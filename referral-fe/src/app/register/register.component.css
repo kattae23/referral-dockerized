@@ -1,0 +1,56 @@
+.main-container {
+    max-width: 448px;
+    margin: 0 auto;
+}
+
+.main-container h2 {
+    font-weight: bold;
+    margin-bottom: 16px;
+    font-size: 24px;
+}
+
+.main-container div {
+    margin-bottom: 16px;
+}
+
+.main-container label {
+    margin-bottom: 8px;
+    display: block;
+    font-weight: bold;
+}
+
+.main-container input, select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.main-container button {
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    border: none;
+    color: white;
+    background-color: #3B82F6;
+}
+
+.main-container button:hover {
+    background-color: #2563EB;
+}
+
+@media (width <= 660px) {
+    .main-container {
+        max-width: 235px;
+    }
+}
+
+.showReferringUser {
+    display: none;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+  }

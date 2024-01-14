@@ -1,0 +1,55 @@
+<div class="main-container">
+    <h2>Register</h2>
+    <form #f="ngForm" (ngSubmit)="f.form.valid && onSaveUser()">
+      <div>
+        <label for="username">
+          Username
+        </label>
+        <input [(ngModel)]="username" type="text" id="username" required name="username" />
+      </div>
+      <div>
+        <label for="password">
+          Password
+        </label>
+        <input [(ngModel)]="password" type="password" id="password" required name="password" />
+      </div>
+      <div>
+        <label for="email">
+          Email
+        </label>
+        <input [(ngModel)]="email" type="email" id="email" required name="email" />
+      </div>
+      <div>
+        <label for="birthdate">
+          Birthdate
+        </label>
+        <input [(ngModel)]="birthdate" type="date" id="birthdate" required name="birthdate" />
+      </div>
+      <div>
+        <label for="referrer">
+          How did you hear about us?
+        </label>
+        <select [(ngModel)]="selectedValue" id="referrer" name="referrer" required>
+          <option value="">Select an option</option>
+          <option value="youtube">YouTube</option>
+          <option value="google">Google</option>
+          <option value="tv">TV</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+      <div *ngIf="selectedValue === 'user'" class="">
+        <label for="referringUser">
+          Referring User
+        </label>
+        <input [(ngModel)]="referrerUser"  type="text" id="referringUser" name="referringUser" />
+      </div>
+      <div *ngIf="errors" class="error-message">
+        <ul  *ngFor="let error of errors">
+          <li>{{error}}</li>
+        </ul>
+      </div>
+      <button type="submit">
+        Register
+      </button>
+    </form>
+  </div>

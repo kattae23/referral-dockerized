@@ -1,0 +1,62 @@
+version: '3.1'
+
+
+services:
+
+  be:
+    build:
+      context: ./referral-be
+      dockerfile: Dockerfile
+    
+    image: kattae/referral-be:1.0.0
+    container_name: referral-be
+    ports:
+      - ${PORT}:${PORT}
+    environment:
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      PORT: ${PORT}
+      HOST_API: ${HOST_API}
+    depends_on:
+      - db
+    command: ["sh", "-c", "sleep 30 && pnpm run start:prod"]
+    networks:
+      - backend
+
+  fe:
+    build:
+      context: ./referral-fe
+      dockerfile: Dockerfile
+    image: kattae/referral-fe:1.0.0
+    container_name: referral-fe
+    ports:
+      - 4200:80
+    depends_on:
+      - be
+    networks:
+      - backend
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    container_name: ${DB_HOST}
+    volumes:
+      - mysql-db:/var/lib/mysql
+    networks:
+      - backend
+
+
+volumes:
+  mysql-db:
+  
+networks:
+  backend:

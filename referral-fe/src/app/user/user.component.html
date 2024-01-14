@@ -1,0 +1,26 @@
+<a routerLink="/users">
+    Go back
+</a>
+
+<div class="card">
+  <img src="./assets/no-image.png" alt="John" style="width:100%">
+  <h1>{{userReferral?.user?.username}}</h1>
+  <p class="title">CEO</p>
+  <p>Email: {{userReferral?.user?.email}}</p>
+  <p>Date of birth: {{userReferral?.user?.dateOfBirth}}</p>
+  <p>Points: {{userReferral?.user?.points}}</p>
+  <p>How did you hear about us?: {{userReferral?.user?.whoRefferEnum?.toUpperCase()}}</p>
+  <div *ngIf="userReferral?.user?.whoRefferEnum === 'user'">
+    <a routerLink="/users/{{userReferral?.user?.refereeUsers![0].referredUser.id}}" (click)="reload(userReferral?.user?.refereeUsers![0].referredUser.id)">
+        {{userReferral?.user?.refereeUsers![0].referredUser.username}}
+    </a>
+  </div>
+  <p><button *ngIf="userReferral?.total! >= 1" (click)="showReferrals()">Referrals</button></p>
+    <div class="referrals-container" *ngIf="show">
+        <div *ngFor="let referred of userReferral?.referees">
+            <a class="badge badge-outline badge-sm badge-info badge-pill" routerLink="/users/{{referred.id}}" (click)="reload(referred.id)">
+                {{referred.username}}
+            </a>
+        </div>
+    </div>
+</div>

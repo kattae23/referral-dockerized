@@ -1,0 +1,29 @@
+<button class="sign-out badge badge-outline badge-info badge-pill" (click)="signOut()">
+    SignOut
+</button>
+
+<div class="container bootdey">
+    <div class="row">
+        <div class="col">
+            <div class="user-widget-2">
+                <ul *ngFor="let user of users" class="list-unstyled">
+                    <li class="media">
+                        <div class="media-body">
+                            <a routerLink="/users/{{user.id}}">
+                                <img class="rounded-circle d-flex align-self-center" src="./assets/no-image.png" alt="">
+                                <h5>{{user.username}}</h5>
+                            </a>
+                            <p>Total users referred: {{user.referredUser.length}}</p>
+                            <p *ngFor="let referred of user.referredUser">
+                                <a routerLink="/users/{{referred.refereeUsers.id}}">
+                                    <span class="badge badge-outline badge-sm badge-info badge-pill">
+                                        {{referred.refereeUsers.username}}
+                                    </span>
+                                </a>
+                            </p>
+                        </div><i class="d-flex align-self-center fa fa-dot-circle-o color-success"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
