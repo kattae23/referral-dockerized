@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
         ],
         birthdate: [null, Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/)],
         selectedValue: ['', Validators.required],
-        referrerUser: ['']
+        referrerUser: [null]
       },
     );
   }
