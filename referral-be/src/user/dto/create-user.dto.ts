@@ -34,11 +34,10 @@ export class CreateUserDto {
   referrer_username?: string;
 
   @IsString()
-  @MinLength(6)
-  @MaxLength(50)
-  @Matches(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+  @MinLength(6, {
     message:
-      'The password must have a Uppercase, lowercase letter and a number',
+      'the password must be longer than 6 characters',
   })
+  @MaxLength(50)
   password: string;
 }

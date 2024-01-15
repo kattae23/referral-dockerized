@@ -68,6 +68,9 @@
         </label>
         <input formControlName="referrerUser"  type="text" />
       </div>
+      <div *ngIf="submitted && f['selectedValue'].errors" class="invalid-feedback">
+        <div *ngIf="f['selectedValue'].errors['required']">You must select a value</div>
+      </div>
       <div *ngIf="errors" class="error-message">
         <ul  *ngFor="let error of errors">
           <li>{{error}}</li>
