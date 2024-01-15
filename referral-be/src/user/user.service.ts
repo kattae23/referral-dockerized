@@ -40,11 +40,9 @@ export class UserService {
       );
       if (user) throw new NotFoundException('Email or username already exists');
 
-      const birth = new Date(date_of_birth);
-
       const newUser = this.userRepo.create({
         ...userData,
-        dateOfBirth: birth,
+        dateOfBirth: date_of_birth ? new Date(date_of_birth) : null,
         whoRefferEnum,
         password: passwordHash(password),
       });

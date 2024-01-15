@@ -4,7 +4,6 @@ import {
   IsEnum,
   IsOptional,
   IsString,
-  Matches,
   MaxLength,
   MinLength,
 } from 'class-validator';
@@ -30,13 +29,11 @@ export class CreateUserDto {
 
   @IsString()
   @IsOptional()
-  @MinLength(3)
   referrer_username?: string;
 
   @IsString()
   @MinLength(6, {
-    message:
-      'the password must be longer than 6 characters',
+    message: 'the password must be longer than 6 characters',
   })
   @MaxLength(50)
   password: string;

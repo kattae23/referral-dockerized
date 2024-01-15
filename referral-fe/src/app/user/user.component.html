@@ -7,7 +7,7 @@
   <h1>{{userReferral?.user?.username}}</h1>
   <p class="title">CEO</p>
   <p>Email: {{userReferral?.user?.email}}</p>
-  <p>Date of birth: {{userReferral?.user?.dateOfBirth}}</p>
+  <p *ngIf="userReferral?.user?.dateOfBirth">Date of birth: {{userReferral?.user?.dateOfBirth}}</p>
   <p>Points: {{userReferral?.user?.points}}</p>
   <p>How did you hear about us?: {{userReferral?.user?.whoRefferEnum?.toUpperCase()}}</p>
   <div *ngIf="userReferral?.user?.whoRefferEnum === 'user'">
