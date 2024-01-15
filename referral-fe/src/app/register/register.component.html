@@ -1,35 +1,60 @@
 <div class="main-container">
     <h2>Register</h2>
-    <form #f="ngForm" (ngSubmit)="f.form.valid && onSaveUser()">
+    <form [formGroup]="form" (ngSubmit)="onSaveUser()">
       <div>
         <label for="username">
           Username
         </label>
-        <input [(ngModel)]="username" type="text" id="username" required name="username" />
+        <input formControlName="username" type="text" />
+      </div>
+      <div *ngIf="submitted && f['username'].errors" class="invalid-feedback">
+        <div *ngIf="f['username'].errors['required']">Username is required</div>
+        <div *ngIf="f['username'].errors['minlength']">
+          Username must be at least 6 characters
+        </div>
+        <div *ngIf="f['username'].errors['maxlength']">
+          Username must not exceed 20 characters
+        </div>
       </div>
       <div>
         <label for="password">
           Password
         </label>
-        <input [(ngModel)]="password" type="password" id="password" required name="password" />
+        <input formControlName="password" type="password" />
+      </div>
+      <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+        <div *ngIf="f['password'].errors['required']">Password is required</div>
+        <div *ngIf="f['password'].errors['minlength']">
+          Password must be at least 6 characters
+        </div>
+        <div *ngIf="f['password'].errors['maxlength']">
+          Username must not exceed 40 characters
+        </div>
       </div>
       <div>
         <label for="email">
           Email
         </label>
-        <input [(ngModel)]="email" type="email" id="email" required name="email" />
+        <input formControlName="email" type="email" />
+      </div>
+      <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+        <div *ngIf="f['email'].errors['required']">Email is required</div>
+        <div *ngIf="f['email'].errors['email']">Email is invalid</div>
       </div>
       <div>
         <label for="birthdate">
           Birthdate
         </label>
-        <input [(ngModel)]="birthdate" type="date" id="birthdate" required name="birthdate" />
+        <input formControlName="birthdate" type="date" id="birthdate" name="birthdate" />
+      </div>
+      <div *ngIf="submitted && f['birthdate'].errors" class="invalid-feedback">
+        <div *ngIf="f['birthdate'].errors['pattern']">The date must have a correct format</div>
       </div>
       <div>
         <label for="referrer">
           How did you hear about us?
         </label>
-        <select [(ngModel)]="selectedValue" id="referrer" name="referrer" required>
+        <select formControlName="selectedValue" id="referrer" name="referrer">
           <option value="">Select an option</option>
           <option value="youtube">YouTube</option>
           <option value="google">Google</option>
@@ -37,11 +62,11 @@
           <option value="user">User</option>
         </select>
       </div>
-      <div *ngIf="selectedValue === 'user'" class="">
+      <div *ngIf="f['selectedValue'].value === 'user'" class="">
         <label for="referringUser">
           Referring User
         </label>
-        <input [(ngModel)]="referrerUser"  type="text" id="referringUser" name="referringUser" />
+        <input formControlName="referrerUser"  type="text" />
       </div>
       <div *ngIf="errors" class="error-message">
         <ul  *ngFor="let error of errors">
