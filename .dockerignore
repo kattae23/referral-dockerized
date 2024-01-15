@@ -1,0 +1,11 @@
+/referral-be/Dockerfile
+/referral-be/.dockerignore
+/referral-be/node_modules
+/referral-be/npm-debug.log
+/referral-be/dist
+
+/referral-fe/Dockerfile
+/referral-fe/.dockerignore
+/referral-fe/node_modules
+/referral-fe/npm-debug.log
+/referral-fe/dist
